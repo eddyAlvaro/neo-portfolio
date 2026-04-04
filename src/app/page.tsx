@@ -1,11 +1,14 @@
 
 
+import { Achievements } from "@/features/achievements";
+import { SaveTerminal } from "@/features/contact";
+import { LoreLog } from "@/features/log";
 import { CharacterStats } from "@/features/profile";
-import { NeonCard } from "@/shared/components/ui/neon";
+import { ProjectList } from "@/features/projects";
 
 export default function Home() {
   return (
-    <div className="min-h-screen sm:h-screen w-full px-3 py-6 sm:px-5 md:px-8 lg:px-10 xl:px-12 flex flex-col overflow-auto lg:overflow-hidden bg-black text-gray-100">
+    <div className="min-h-screen lg:h-full w-full px-3 py-6 sm:px-5 md:px-8 lg:px-10 xl:px-12 flex flex-col overflow-auto lg:overflow-hidden bg-black text-gray-100">
       {/* ── Page Header ── */}
       <header className="mb-4 flex flex-col gap-1 shrink-0">
         <div className="flex items-center gap-3">
@@ -28,76 +31,65 @@ export default function Home() {
       <main
         className="
           grid grid-cols-1 gap-4
-          sm:grid-cols-2 sm:grid-rows-8
+          sm:grid-cols-2
           lg:grid-cols-3 lg:grid-rows-5
           xl:grid-cols-4 xl:grid-rows-6
-          min-h-screen lg:min-h-0 lg:flex-1
+          shrink-0 lg:min-h-0 lg:flex-1
         "
         aria-label="Portfolio bento grid"
       >
         {/* ── PROJECTS ── */}
         <section
           className="
-            row-span-2
-            sm:col-span-1 sm:row-span-3
             lg:col-span-2 lg:row-span-2
-            xl:col-span-2 xl:row-span-4
-            min-h-0 h-full
+            xl:col-span-2 xl:row-span-3
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-projects"
         >
           <h2 id="section-projects" className="sr-only">Featured Projects</h2>
-          <NeonCard glowColor="cyan" className="flex flex-col gap-5 h-full">
-            PROJECTS
-          </NeonCard>
+          <ProjectList/>
         </section>
 
         {/* ── SKILLS ── */}
-        <section
+        {/* <section
           className="
-            row-span-2
-            sm:col-span-1 sm:row-span-2
+            sm:col-span-2 sm:row-span-1
             lg:col-span-1 lg:row-span-2
             xl:col-start-4 xl:col-span-1 xl:row-span-3
-            min-h-0 h-full
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-skills"
         >
           <h2 id="section-skills" className="sr-only">Equipped Skills</h2>
-          <NeonCard glowColor="fuchsia" className="flex flex-col gap-5 h-full">
-            SKILLS
-          </NeonCard>
-        </section>
+          <EquippedSkills/>
+        </section> */}
 
         {/* ── ACHIEVEMENTS ── */}
         <section
           className="
-            row-span-1
-            sm:col-span-1 sm:row-span-2
+            sm:col-span-1
             lg:col-span-1 lg:row-span-1
             lg:col-start-3 lg:row-start-5
-            xl:col-start-1 xl:row-start-5 xl:col-span-1 xl:row-span-2
-            min-h-0 h-full
+            xl:col-start-4 xl:row-start-4 xl:col-span-1 xl:row-span-3
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-achievements"
         >
           <h2 id="section-achievements" className="sr-only">Achievements</h2>
-          <NeonCard glowColor="yellow" className="flex flex-col gap-5 h-full">
-            ACHIEVEMENTS
-          </NeonCard>
+          <Achievements/>
         </section>
 
         {/* ── PROFILE ── */}
         <section
           className="
-            row-span-2
-            col-start-1 row-start-1
-            sm:col-span-1 sm:row-span-5
+            row-start-1
+            sm:col-span-1
             sm:col-start-1 sm:row-start-1
             lg:col-span-2 lg:row-span-3
             xl:row-start-1
             xl:col-start-3 xl:col-span-1 xl:row-span-4
-            min-h-0 h-full
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-profile"
         >
@@ -108,37 +100,33 @@ export default function Home() {
         {/* ── CONTACT ── */}
         <section
           className="
-            row-span-1
-            sm:col-span-1 sm:row-span-7
+            row-start-6
+            sm:col-span-2
+            sm:row-start-4
             lg:col-span-1 lg:row-span-2
-            xl:col-start-4 xl:col-span-1 xl:row-span-3
-            min-h-0 h-full
+            xl:col-start-1 xl:col-span-2 xl:row-span-3
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-contact"
         >
           <h2 id="section-contact" className="sr-only">Save Terminal</h2>
-          <NeonCard glowColor="green" className="flex flex-col gap-5 h-full">
-            CONTACT
-          </NeonCard>
+          <SaveTerminal/>
         </section>
 
         {/* ── LOG ── */}
         <section
           className="
-            row-span-1
-            sm:col-span-1 sm:row-span-5
+            sm:col-span-1
             lg:col-span-1 lg:row-span-1
             lg:hidden xl:block
             lg:col-start-2 lg:row-start-5
-            xl:col-start-2 xl:col-span-2 xl:row-span-2
-            min-h-0 h-full
+            xl:col-start-3 xl:col-span-1 xl:row-span-2
+            lg:min-h-0 h-auto lg:h-full
           "
           aria-labelledby="section-log"
         >
           <h2 id="section-log" className="sr-only">Lore Log</h2>
-          <NeonCard glowColor="cyan" className="flex flex-col gap-5 h-full">
-            LOG
-          </NeonCard>
+          <LoreLog/>
         </section>
       </main>
     </div>

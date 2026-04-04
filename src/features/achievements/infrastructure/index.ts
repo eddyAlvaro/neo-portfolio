@@ -1,0 +1,58 @@
+import type { Achievement } from "../domain";
+
+export const achievementsData: Achievement[] = [
+  {
+    id: "first-deploy",
+    title: "Deployment Initiate",
+    description: "Successfully deployed first production application",
+    icon: "🚀",
+    rarity: "common",
+    unlockedAt: "2021-03-15",
+    unlocked: true,
+  },
+  {
+    id: "open-source",
+    title: "Open Source Warrior",
+    description: "Contributed to 10+ open source repositories",
+    icon: "⚔️",
+    rarity: "rare",
+    unlockedAt: "2022-07-20",
+    unlocked: true,
+  },
+  {
+    id: "arch-master",
+    title: "Architecture Sage",
+    description: "Designed a system serving 100k+ users",
+    icon: "🏛️",
+    rarity: "epic",
+    unlockedAt: "2023-01-10",
+    unlocked: true,
+  },
+  {
+    id: "fullstack",
+    title: "Full Stack Legend",
+    description: "Shipped production code across the entire tech stack",
+    icon: "👑",
+    rarity: "legendary",
+    unlockedAt: "2023-09-01",
+    unlocked: true,
+  },
+  {
+    id: "perf-wizard",
+    title: "Performance Wizard",
+    description: "Achieved 100/100 Lighthouse score on a complex app",
+    icon: "⚡",
+    rarity: "epic",
+    unlockedAt: "2024-02-14",
+    unlocked: true,
+  },
+  {
+    id: "ai-pioneer",
+    title: "AI Pioneer",
+    description: "Integrated local LLM models into production workflows",
+    icon: "🤖",
+    rarity: "rare",
+    unlockedAt: "2025-06-30",
+    unlocked: true,
+  },
+];

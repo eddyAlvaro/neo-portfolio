@@ -14,5 +14,4 @@ export interface Profile {
   class: string;
   about: string;
   stats: Stat[];
-  avatarAscii: string;
 }
