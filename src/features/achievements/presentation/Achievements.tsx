@@ -44,7 +44,7 @@ function AchievementRow({ achievement, index }: { achievement: Achievement; inde
 }
 
 export function Achievements() {
-  const achievements = useAchievements();
+  const achievements = useAchievements().reverse();
   const unlocked = achievements.filter((a) => a.unlocked);
 
   return (

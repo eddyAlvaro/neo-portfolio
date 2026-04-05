@@ -18,7 +18,7 @@ export const projectsData: Project[] = [
     image: "",
     techStack: ["React", "Node.js", "PostgreSQL", "AWS S3"],
     xp: 2400,
-    featured: true,
+    featured: false,
     status: "shipped",
   },
   {
@@ -28,19 +28,29 @@ export const projectsData: Project[] = [
     image: "",
     techStack: ["Next.js", "Socket.io", "Redis", "Docker"],
     xp: 3200,
-    featured: true,
+    featured: false,
     status: "shipped",
   },
   {
-    id: "ai-terminal",
-    title: "AI Terminal",
-    description: "Browser-based AI-powered terminal with local LLM integration and custom command scripting.",
+    id: "webpify",
+    title: "Webpify",
+    description: "Webpify is a vscode extension that allows you to convert images to webp format.",
     image: "",
-    techStack: ["Python", "FastAPI", "Ollama", "React"],
-    xp: 2100,
-    featured: false,
+    techStack: ["TypeScript", "VSCode API"],
+    xp: 1000,
+    featured: true,
     status: "in-progress",
   },
+  {
+    id: "gym-ux",
+    title: "GymU",
+    description: "GymU is a mobile application that allows you to track your workouts and progress.",
+    image: "",
+    techStack: ["Flutter", "Dart"],
+    xp: 1800,
+    featured: true,
+    status: "in-progress",
+  }
 ];
 
 export const levelProgressData: LevelProgress = {
