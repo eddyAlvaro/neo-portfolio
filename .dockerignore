@@ -1,0 +1,47 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Next.js build output
+.next
+out
+dist
+
+# Version control
+.git
+.gitignore
+
+# Environment variables (never bake secrets into the image)
+.env
+.env.*
+!.env.example
+
+# IDE & tooling
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage
+.nyc_output
+
+# Docker files themselves
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Agents & internal docs
+.agents
+README.md
+ARCHITECTURE.md
+LICENSE

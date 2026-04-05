@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ButtonHTMLAttributes } from "react";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-interface NeonButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface NeonButtonProps extends HTMLMotionProps<"button"> {
   variant?: "cyan" | "fuchsia" | "green";
-  children: React.ReactNode;
 }
 
 const variantMap = {
@@ -24,7 +22,7 @@ export function NeonButton({ variant = "cyan", children, className = "", ...prop
         transition-all duration-300 cursor-pointer disabled:opacity-40 w-full
         ${variantMap[variant]} ${className}
       `}
-      {...(props as React.ComponentPropsWithoutRef<"button">)}
+      {...props}
     >
       {children}
     </motion.button>
