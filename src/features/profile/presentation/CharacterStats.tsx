@@ -2,7 +2,6 @@
 
 import { NeonCard, NeonProgressBar } from "@/shared/components/ui/neon";
 import { useProfile } from "../application";
-import Image from "next/image";
 
 export function CharacterStats() {
   const profile = useProfile();
@@ -22,7 +21,17 @@ export function CharacterStats() {
               <h2 className="text-lg font-mono font-bold text-cyan-100">{profile.name}</h2>
               <span className="text-xs font-mono text-gray-500">{profile.class}</span>
             </div>
-            <Image className="w-30 lg:w-20 m-[0_auto]" src="/images/profile.png" alt={`Avatar de ${profile.name}`} width={150} height={150} />
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              poster="/images/profile.png"
+              className="aspect-square object-cover mx-auto w-32 md:w-40 lg:w-32 md:max-w-25 my-2"
+            >
+              <source src="/profile.mp4" type="video/mp4" />
+              Tu navegador no soporta videos.
+            </video>
           </div>
           {/* About */}
           <div className="border border-cyan-900/40 rounded-lg p-3 bg-black/30 flex flex-col min-h-0 overflow-hidden">
