@@ -1,10 +1,10 @@
 
 
 import { Achievements } from "@/features/achievements";
-import { SaveTerminal } from "@/features/contact";
 import { LoreLog } from "@/features/log";
 import { CharacterStats } from "@/features/profile";
 import { ProjectList } from "@/features/projects";
+import { UnderConstruction } from "@/shared/components/ui/neon";
 
 export default function Home() {
   return (
@@ -52,7 +52,7 @@ export default function Home() {
         </section>
 
         {/* ── SKILLS ── */}
-        {/* <section
+        <section
           className="
             sm:col-span-2 sm:row-span-1
             lg:col-span-1 lg:row-span-2
@@ -62,8 +62,8 @@ export default function Home() {
           aria-labelledby="section-skills"
         >
           <h2 id="section-skills" className="sr-only">Equipped Skills</h2>
-          <EquippedSkills/>
-        </section> */}
+          <UnderConstruction title="Equipped Skills" />
+        </section>
 
         {/* ── ACHIEVEMENTS ── */}
         <section
@@ -110,7 +110,7 @@ export default function Home() {
           aria-labelledby="section-contact"
         >
           <h2 id="section-contact" className="sr-only">Save Terminal</h2>
-          <SaveTerminal/>
+          <UnderConstruction title="Save Terminal" />
         </section>
 
         {/* ── LOG ── */}
