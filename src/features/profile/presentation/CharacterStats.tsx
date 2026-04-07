@@ -26,7 +26,7 @@ export function CharacterStats() {
               loop 
               muted 
               playsInline 
-              poster="/images/profile.png"
+              poster="/images/profile.min.webp"
               className="aspect-square object-cover mx-auto w-32 md:w-40 lg:w-32 md:max-w-25 my-2"
             >
               <source src="/profile.mp4" type="video/mp4" />

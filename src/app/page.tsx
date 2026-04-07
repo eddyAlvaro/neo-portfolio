@@ -4,6 +4,7 @@ import { Achievements } from "@/features/achievements";
 import { LoreLog } from "@/features/log";
 import { CharacterStats } from "@/features/profile";
 import { ProjectList } from "@/features/projects";
+import { EquippedSkills } from "@/features/skills";
 import { UnderConstruction } from "@/shared/components/ui/neon";
 
 export default function Home() {
@@ -44,6 +45,7 @@ export default function Home() {
             lg:col-span-2 lg:row-span-2
             xl:col-span-2 xl:row-span-3
             lg:min-h-0 h-auto lg:h-full
+            relative z-0 hover:z-20 transition-all
           "
           aria-labelledby="section-projects"
         >
@@ -58,11 +60,13 @@ export default function Home() {
             lg:col-span-1 lg:row-span-2
             xl:col-start-4 xl:col-span-1 xl:row-span-3
             lg:min-h-0 h-auto lg:h-full
+            relative z-0 hover:z-30 transition-all
           "
           aria-labelledby="section-skills"
         >
           <h2 id="section-skills" className="sr-only">Equipped Skills</h2>
-          <UnderConstruction title="Equipped Skills" />
+          {/* <UnderConstruction title="Equipped Skills" /> */}
+          <EquippedSkills/>
         </section>
 
         {/* ── ACHIEVEMENTS ── */}
@@ -90,6 +94,7 @@ export default function Home() {
             xl:row-start-1
             xl:col-start-3 xl:col-span-1 xl:row-span-4
             lg:min-h-0 h-auto lg:h-full
+            relative z-0 hover:z-20 transition-all
           "
           aria-labelledby="section-profile"
         >
