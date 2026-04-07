@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, LazyMotion, domAnimation, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NeonProgressBar } from "@/shared/components/ui/neon";
 import type { Skill } from "../../domain";
 
@@ -27,12 +27,16 @@ const colorText = {
 
 export function SkillCard({ skill, index }: SkillCardProps) {
   const [hovered, setHovered] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
+    <LazyMotion features={domAnimation}>
+    <m.div
+      initial={prefersReduced ? false : { opacity: 0, scale: 0.85 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.35, delay: index * 0.06 }}
+      style={{ willChange: "transform" }}
       className={`relative w-20 h-20 aspect-square lg:w-full lg:h-full lg:aspect-auto transition-all ${hovered ? "z-30" : "z-0"}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -55,7 +59,13 @@ export function SkillCard({ skill, index }: SkillCardProps) {
         <div className="w-[50%] aspect-square flex items-center justify-center">
           {skill.icon.startsWith("/") ? (
             <div className="relative w-full h-full">
-              <Image src={skill.icon} alt={skill.name} fill className="object-contain" />
+              <Image 
+                src={skill.icon} 
+                alt={skill.name} 
+                fill 
+                sizes="(max-width: 768px) 80px, 120px"
+                className="object-contain" 
+              />
             </div>
           ) : (
             <span className="text-xl md:text-2xl leading-none" role="img" aria-hidden>
@@ -69,13 +79,14 @@ export function SkillCard({ skill, index }: SkillCardProps) {
       </div>
 
       {/* Tooltip */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+          <m.div
+            initial={prefersReduced ? false : { opacity: 0, y: 8, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.9 }}
+            exit={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.9 }}
             transition={{ duration: 0.18 }}
+            style={{ willChange: "transform, opacity" }}
             className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-3 w-52 pointer-events-none"
           >
             <div className="bg-gray-950/95 border border-cyan-500/60 rounded-xl p-3 shadow-[0_0_20px_rgba(34,211,238,0.3)] backdrop-blur-md">
@@ -83,7 +94,13 @@ export function SkillCard({ skill, index }: SkillCardProps) {
                 <div className="w-6 h-6 flex items-center justify-center">
                   {skill.icon.startsWith("/") ? (
                     <div className="relative w-full h-full">
-                      <Image src={skill.icon} alt={skill.name} fill className="object-contain" />
+                      <Image 
+                        src={skill.icon} 
+                        alt={skill.name} 
+                        fill 
+                        sizes="24px"
+                        className="object-contain" 
+                      />
                     </div>
                   ) : (
                     <span className="text-lg">{skill.icon}</span>
@@ -106,9 +123,10 @@ export function SkillCard({ skill, index }: SkillCardProps) {
               {/* Triangle */}
               <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-950 border-r border-b border-cyan-500/60 rotate-45" />
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
+    </LazyMotion>
   );
 }
