@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, LazyMotion, domAnimation, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NeonCard, NeonButton, NeonInput, NeonTextarea } from "@/shared/components/ui/neon";
 import { useContactForm, useSocials } from "../application";
 
@@ -16,6 +16,7 @@ function TerminalPrompt({ children }: { children: React.ReactNode }) {
 }
 
 export function SaveTerminal() {
+  const prefersReduced = useReducedMotion();
   const { form, update, submit, status } = useContactForm();
   const socials = useSocials();
 
@@ -26,6 +27,7 @@ export function SaveTerminal() {
   };
 
   return (
+    <LazyMotion features={domAnimation}>
     <NeonCard glowColor="fuchsia" className="flex flex-col gap-5 h-auto lg:h-full">
       {/* Terminal header */}
       <div className="border-b border-fuchsia-900/50 pb-3">
@@ -83,26 +85,28 @@ export function SaveTerminal() {
         />
 
         {/* Status feedback */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {status === "success" && (
-            <motion.p
-              initial={{ opacity: 0, y: -4 }}
+            <m.p
+              key="success"
+              initial={prefersReduced ? false : { opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               className="text-xs font-mono text-green-400 bg-green-950/40 border border-green-800/50 rounded-lg px-3 py-2"
             >
               ✓ Message transmitted successfully. Standing by for response.
-            </motion.p>
+            </m.p>
           )}
           {status === "error" && (
-            <motion.p
-              initial={{ opacity: 0, y: -4 }}
+            <m.p
+              key="error"
+              initial={prefersReduced ? false : { opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               className="text-xs font-mono text-red-400 bg-red-950/40 border border-red-800/50 rounded-lg px-3 py-2"
             >
               ✗ Transmission failed. Retry or use direct channel below.
-            </motion.p>
+            </m.p>
           )}
         </AnimatePresence>
 
@@ -123,13 +127,14 @@ export function SaveTerminal() {
         </p>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
           {socials.map((social) => (
-            <motion.a
+            <m.a
               key={social.id}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={prefersReduced ? {} : { scale: 1.05 }}
+              whileTap={prefersReduced ? {} : { scale: 0.97 }}
+              style={{ willChange: "transform" }}
               className={`
                 flex items-center gap-2 px-3 py-2.5 rounded-lg border
                 font-mono text-xs transition-all duration-300
@@ -141,10 +146,11 @@ export function SaveTerminal() {
             >
               {/* <span className="font-bold text-sm w-5 text-center">{social.icon}</span> */}
               <span className="truncate">{social.label}</span>
-            </motion.a>
+            </m.a>
           ))}
         </div>
       </div>
     </NeonCard>
+    </LazyMotion>
   );
 }

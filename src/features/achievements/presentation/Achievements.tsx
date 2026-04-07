@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
 import { NeonCard } from "@/shared/components/ui/neon";
 import { useAchievements } from "../application";
 import type { Achievement } from "../domain";
@@ -14,12 +14,15 @@ const rarityConfig = {
 
 function AchievementRow({ achievement, index }: { achievement: Achievement; index: number }) {
   const rarity = rarityConfig[achievement.rarity];
+  const prefersReduced = useReducedMotion();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
+    <m.div
+      initial={prefersReduced ? false : { opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.35, delay: index * 0.07 }}
+      style={{ willChange: "transform" }}
       className={`
         flex items-center gap-3 p-2.5 rounded-lg border
         transition-all duration-300 hover:scale-[1.01]
@@ -39,29 +42,31 @@ function AchievementRow({ achievement, index }: { achievement: Achievement; inde
       <div className="shrink-0 text-[10px] font-mono text-gray-600 text-right">
         {new Date(achievement.unlockedAt).getFullYear()}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
 export function Achievements() {
-  const achievements = useAchievements().reverse();
+  const achievements = [...useAchievements()].reverse();
   const unlocked = achievements.filter((a) => a.unlocked);
 
   return (
-    <NeonCard glowColor="yellow" className="flex flex-col gap-4 h-auto lg:h-full">
-      <div className="flex items-center justify-between border-b border-yellow-900/40 pb-3">
-        <span className="text-xs font-mono uppercase tracking-[0.3em] text-yellow-500">
-          ▸ Achievements
-        </span>
-        <span className="text-xs font-mono text-gray-600">
-          {unlocked.length}/{achievements.length} unlocked
-        </span>
-      </div>
-      <div className="flex flex-col gap-2 overflow-y-auto px-2 flex-1 custom-scrollbar min-h-0 max-h-100">
-        {achievements.map((achievement, i) => (
-          <AchievementRow key={achievement.id} achievement={achievement} index={i} />
-        ))}
-      </div>
-    </NeonCard>
+    <LazyMotion features={domAnimation}>
+      <NeonCard glowColor="yellow" className="flex flex-col gap-4 h-auto lg:h-full">
+        <div className="flex items-center justify-between border-b border-yellow-900/40 pb-3">
+          <span className="text-xs font-mono uppercase tracking-[0.3em] text-yellow-500">
+            ▸ Achievements
+          </span>
+          <span className="text-xs font-mono text-gray-600">
+            {unlocked.length}/{achievements.length} unlocked
+          </span>
+        </div>
+        <div className="flex flex-col gap-2 overflow-y-auto px-2 flex-1 custom-scrollbar min-h-0 max-h-100">
+          {achievements.map((achievement, i) => (
+            <AchievementRow key={achievement.id} achievement={achievement} index={i} />
+          ))}
+        </div>
+      </NeonCard>
+    </LazyMotion>
   );
 }
