@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import type { Project } from "../domain";
 import { ProjectImageModal } from "@/shared/components/ui/neon/ProjectImageModal";
+import { Project } from "@/features/projects/domain";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

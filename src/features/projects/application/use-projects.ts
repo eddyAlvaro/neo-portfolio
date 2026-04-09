@@ -1,6 +1,7 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import { projectsData, levelProgressData } from "../infrastructure";
+import { projectRepository, levelProgressData } from "../infrastructure";
 import type { Project, LevelProgress } from "../domain";
 
 export function useProjects(): { projects: Project[]; loading: boolean; error: string | null } {
@@ -9,13 +10,24 @@ export function useProjects(): { projects: Project[]; loading: boolean; error: s
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    try {
-      setProjects(projectsData);
-    } catch {
-      setError("Failed to load projects");
-    } finally {
-      setLoading(false);
+    let isMounted = true;
+
+    async function fetchProjects() {
+      try {
+        const data = await projectRepository.getProjects();
+        if (isMounted) setProjects(data);
+      } catch (err) {
+        if (isMounted) setError("Failed to load projects from terminal.");
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     }
+
+    fetchProjects();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return { projects, loading, error };
