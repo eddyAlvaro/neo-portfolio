@@ -34,6 +34,7 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [isAutoPlayDisabled, setIsAutoPlayDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
 
   // Tick ref so the RAF loop always reads current values
@@ -41,10 +42,12 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
   const pausedAtRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
   const isPausedRef = useRef(false);
+  const isAutoPlayDisabledRef = useRef(false);
   const dragStartXRef = useRef<number | null>(null);
 
   const advance = useCallback(
-    (dir: 1 | -1 = 1) => {
+    (dir: 1 | -1 = 1, isManual = false) => {
+      if (isManual) setIsAutoPlayDisabled(true);
       setDirection(dir);
       setActiveIndex((i) => (i + dir + total) % total);
       setProgress(0);
@@ -53,10 +56,11 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
     [total],
   );
 
-  const goNext = useCallback(() => advance(1), [advance]);
-  const goPrev = useCallback(() => advance(-1), [advance]);
+  const goNext = useCallback(() => advance(1, true), [advance]);
+  const goPrev = useCallback(() => advance(-1, true), [advance]);
   const goTo = useCallback(
     (index: number) => {
+      setIsAutoPlayDisabled(true);
       setDirection((prev) => (index > prev ? 1 : -1));
       setActiveIndex(index);
       setProgress(0);
@@ -68,7 +72,7 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
   // RAF-based progress ticker — GPU-friendly, no setState on every ms
   useEffect(() => {
     const tick = (now: number) => {
-      if (!isPausedRef.current) {
+      if (!isPausedRef.current && !isAutoPlayDisabledRef.current) {
         const elapsed = now - startTimeRef.current;
         const pct = Math.min((elapsed / AUTOPLAY_INTERVAL) * 100, 100);
         setProgress(pct);
@@ -76,6 +80,9 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
         if (elapsed >= AUTOPLAY_INTERVAL) {
           advance(1);
         }
+      } else {
+        // If disabled, just keep progress at 0 or where it was
+        // but we don't want to advance
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -86,23 +93,27 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
     };
   }, [advance]);
 
-  // Sync isPaused → ref so the RAF closure reads it without stale closure
+  // Sync state to refs for closure stability
   useEffect(() => {
     isPausedRef.current = isPaused;
     if (isPaused) {
       pausedAtRef.current = performance.now();
     } else if (pausedAtRef.current !== null) {
-      // Shift start time forward by how long we were paused
       startTimeRef.current += performance.now() - pausedAtRef.current;
       pausedAtRef.current = null;
     }
   }, [isPaused]);
+
+  useEffect(() => {
+    isAutoPlayDisabledRef.current = isAutoPlayDisabled;
+  }, [isAutoPlayDisabled]);
 
   const pause = useCallback(() => setIsPaused(true), []);
   const resume = useCallback(() => setIsPaused(false), []);
 
   // Swipe / drag detection
   const onDragStart = useCallback((e: React.PointerEvent) => {
+    setIsAutoPlayDisabled(true);
     dragStartXRef.current = e.clientX;
   }, []);
 
