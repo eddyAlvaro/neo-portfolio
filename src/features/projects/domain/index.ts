@@ -1,11 +1,12 @@
 // src/features/projects/domain/entities/project.ts
 
 export type ProjectDifficulty = 1 | 2 | 3 | 4 | 5;
-export type ProjectRole = "Lead Developer" | "Solo Dev" | "Frontend Lead" | "Full-Stack" | "OSS Contributor";
+export type ProjectRole = "Lead Developer" | "Solo Dev" | "Frontend Lead" | "Full-Stack" | "OSS Contributor" | "Systems Maintainer";
 export type ProjectArchitecture =
   | "Clean Architecture"
   | "Clean Hexagonal"
   | "MVC"
+  | "MVC (Service Oriented)"
   | "Micro-frontend"
   | "Event-Driven"
   | "Plugin System";
@@ -42,6 +43,7 @@ export interface Project {
   devLog: DevLog;
   githubUrl?: string;
   demoUrl?: string;
+  liveDisclaimer?: string;
 }
 
 export interface LevelProgress {

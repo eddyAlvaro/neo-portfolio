@@ -42,7 +42,7 @@ export default function Home() {
         {/* ── PROJECTS ── */}
         <section
           className="
-            lg:col-span-2 lg:row-span-2
+            lg:col-span-2 lg:row-span-3
             xl:col-span-2 xl:row-span-3
             lg:min-h-0 h-auto lg:h-full
             relative z-0 hover:z-20 transition-all
@@ -90,7 +90,8 @@ export default function Home() {
             row-start-1
             sm:col-span-1
             sm:col-start-1 sm:row-start-1
-            lg:col-span-2 lg:row-span-3
+            lg:col-span-2 lg:row-span-2
+            lg:row-start-4
             xl:row-start-1
             xl:col-start-3 xl:col-span-1 xl:row-span-4
             lg:min-h-0 h-auto lg:h-full

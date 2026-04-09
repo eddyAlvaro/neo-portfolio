@@ -46,13 +46,13 @@ export const achievementsData: Achievement[] = [
     unlockedAt: "2024-02-14",
     unlocked: true,
   },
-  {
-    id: "ai-pioneer",
-    title: "AI Pioneer",
-    description: "Integrated local LLM models into production workflows",
-    icon: "🤖",
-    rarity: "rare",
-    unlockedAt: "2025-06-30",
-    unlocked: true,
-  },
+  // {
+  //   id: "ai-pioneer",
+  //   title: "AI Pioneer",
+  //   description: "Integrated local LLM models into production workflows",
+  //   icon: "🤖",
+  //   rarity: "rare",
+  //   unlockedAt: "2025-06-30",
+  //   unlocked: false,
+  // },
 ];
