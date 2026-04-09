@@ -3,10 +3,7 @@ import { projectsMocks } from "../data/mock-projects";
 
 export class LocalProjectRepository implements ProjectRepository {
   async getProjects(): Promise<Project[]> {
-    // Simulate API delay
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(projectsMocks), 500);
-    });
+    return projectsMocks;
   }
 
   async getProjectById(id: string): Promise<Project | null> {
