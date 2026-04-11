@@ -46,7 +46,7 @@ export function EquippedSkills() {
       </div>
 
       {/* Grid container */}
-      <div className="flex flex-wrap gap-8 justify-center px-2 min-h-0 pb-4 flex-1 items-start content-start lg:grid lg:grid-cols-4 lg:grid-rows-2 lg:gap-3 lg:place-items-stretch xl:grid-cols-4 xl:grid-rows-3 xl:gap-2">
+      <div className="flex flex-wrap gap-2 justify-center px-2 min-h-0 pb-4 flex-1 items-start content-start lg:grid lg:grid-cols-4 lg:grid-rows-2 lg:gap-3 lg:place-items-stretch xl:grid-cols-4 xl:grid-rows-3 xl:gap-2">
         {displayedSkills.map((skill, i) => (
           <SkillCard key={skill.id} skill={skill} index={i} />
         ))}
