@@ -66,8 +66,8 @@ export function FeaturedProjects() {
               onPointerUp={dragHandlers.onDragEnd}
               style={{ touchAction: "pan-y" }}
             >
-              {/* Fixed-height slide wrapper — prevents CLS */}
-              <div className="relative overflow-hidden rounded-xl" style={{ minHeight: "22rem" }}>
+              {/* Slider stage wrapper — allows tooltips to overflow */}
+              <div className="relative rounded-xl" style={{ minHeight: "22rem" }}>
                 <AnimatePresence mode="wait" custom={direction} initial={false}>
                   {activeProject && (
                     <ProjectCard

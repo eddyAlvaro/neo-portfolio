@@ -7,6 +7,7 @@ import type { Project } from "../../domain";
 import { DifficultyStars } from "./DifficultyStars";
 import { TechnicalLog } from "./TechnicalLog";
 import { LootSystem } from "./LootSystem";
+import { DisclaimerPopover } from "./DisclaimerPopover";
 import { ProjectImageVisor } from "@/features/projects/presentation/components/ProjectImageVisor";
 
 // Status configuration for style mapping
@@ -73,28 +74,7 @@ export function ProjectCard({ project, direction }: ProjectCardProps) {
                 {project.title}
               </h3>
               {project.liveDisclaimer && (
-                <div className="relative group/disclaimer flex items-center">
-                  <motion.span 
-                    animate={{ 
-                      scale: [1, 1.15, 1],
-                      opacity: [0.7, 1, 0.7] 
-                    }}
-                    transition={{ 
-                      duration: 2, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
-                    }}
-                    className="text-yellow-500 cursor-help text-[12px] block" 
-                    aria-label="Disclaimer"
-                  >
-                    ⚠
-                  </motion.span>
-                  <div className="absolute top-[120%] left-0 w-max max-w-50 p-2 bg-yellow-950/90 border border-yellow-900/50 rounded-lg shadow-[0_0_15px_rgba(202,138,4,0.15)] opacity-0 invisible group-hover/disclaimer:opacity-100 group-hover/disclaimer:visible transition-all duration-200 z-50 pointer-events-none">
-                    <p className="text-[10px] font-mono text-yellow-500/90 italic leading-tight whitespace-normal">
-                      [LOG_NOTE]: {project.liveDisclaimer}
-                    </p>
-                  </div>
-                </div>
+                <DisclaimerPopover disclaimer={project.liveDisclaimer} />
               )}
             </div>
             <span className={`shrink-0 text-[9px] font-mono px-1.5 py-0.5 rounded border ${status.color}`}>

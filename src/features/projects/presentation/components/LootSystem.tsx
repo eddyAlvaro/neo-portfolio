@@ -1,5 +1,6 @@
 "use client";
 
+import { usePopover } from "@/shared/hooks/use-popover";
 import type { TechLoot } from "../../domain";
 
 interface LootSystemProps {
@@ -12,6 +13,14 @@ export function LootSystem({ loot, className = "" }: LootSystemProps) {
     ...loot.primary.map((tech) => ({ type: "primary" as const, tech })),
     ...loot.secondary.map((tech) => ({ type: "secondary" as const, tech })),
   ];
+  
+  const { 
+    isOpen, 
+    alignmentClass, 
+    containerRef, 
+    triggerRef, 
+    toggle 
+  } = usePopover<HTMLDivElement, HTMLButtonElement>();
   
   const visibleLoot = allLoot.slice(0, 4);
   const hiddenLoot = allLoot.slice(4);
@@ -36,11 +45,17 @@ export function LootSystem({ loot, className = "" }: LootSystemProps) {
         ))}
         
         {hiddenLoot.length > 0 && (
-          <div className="relative group/tooltip">
-            <span className="px-2 py-0.5 text-[10px] font-mono rounded bg-fuchsia-950/30 text-fuchsia-400 border border-fuchsia-900/50 cursor-pointer flex items-center hover:bg-fuchsia-900/40 transition-colors">
+          <div ref={containerRef} className="relative z-10">
+            <button 
+              ref={triggerRef}
+              onClick={toggle}
+              className="px-2 py-0.5 text-[10px] font-mono rounded bg-fuchsia-950/30 text-fuchsia-400 border border-fuchsia-900/50 cursor-pointer flex items-center hover:bg-fuchsia-900/40 transition-colors select-none outline-none focus:ring-1 focus:ring-fuchsia-500/50"
+            >
               +{hiddenLoot.length} MORE
-            </span>
-            <div className="absolute bottom-full left-0 md:left-1/2 md:-translate-x-1/2 mb-2 w-max max-w-55 p-2 bg-gray-900/95 border border-fuchsia-900/50 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-50 flex flex-wrap gap-1.5">
+            </button>
+            <div className={`absolute bottom-full mb-2 w-max max-w-50 sm:max-w-xs p-2 bg-gray-950 border border-fuchsia-900/50 rounded-lg shadow-2xl transition-all duration-200 z-100 flex flex-wrap gap-1.5 ${alignmentClass} ${
+              isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-1"
+            }`}>
               {hiddenLoot.map(({ type, tech }) => (
                 <span
                   key={`hidden-${type}-${tech}`}

@@ -24,7 +24,7 @@ export default function Home() {
             DEV_PORTFOLIO
           </h1>
           <p className="font-mono text-lg text-gray-600 tracking-widest uppercase">
-            // Full-Stack Developer — Character Sheet Active
+            {"// Full-Stack Developer — Character Sheet Active"}
           </p>
         </div>
       </header>
@@ -45,7 +45,7 @@ export default function Home() {
             lg:col-span-2 lg:row-span-3
             xl:col-span-2 xl:row-span-3
             lg:min-h-0 h-auto lg:h-full
-            relative z-0 hover:z-20 transition-all
+            relative z-2 hover:z-20 transition-all
           "
           aria-labelledby="section-projects"
         >
