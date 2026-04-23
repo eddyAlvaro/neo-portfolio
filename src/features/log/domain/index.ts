@@ -4,5 +4,5 @@ export interface LogEntry {
   title: string;
   body: string;
   tag: string;
-  color: "cyan" | "fuchsia" | "green" | "yellow";
+  color: "cyan" | "fuchsia" | "green" | "yellow" | "orange" | "blue";
 }

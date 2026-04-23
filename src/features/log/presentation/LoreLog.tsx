@@ -10,6 +10,8 @@ const colorMap = {
   fuchsia: "text-fuchsia-400 border-fuchsia-800/50",
   green: "text-green-400 border-green-800/50",
   yellow: "text-yellow-400 border-yellow-800/50",
+  orange: "text-orange-400 border-orange-800/50",
+  blue: "text-blue-400 border-blue-800/50",
 };
 
 function LogEntryRow({ entry, index }: { entry: LogEntry; index: number }) {
