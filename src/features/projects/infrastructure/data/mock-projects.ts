@@ -1,32 +1,57 @@
 import type { Project, LevelProgress } from "../../domain";
 
 export const projectsMocks: Project[] = [
-  {
-    id: "neo-portfolio",
-    title: "Neo Portfolio",
-    description:
-      "Cyberpunk RPG-themed developer portfolio built with Next.js App Router, Clean Architecture and Framer Motion. A living system that tells a technical story.",
-    image: "/projects/neo-portfolio.min.webp",
-    techStack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    xp: 1800,
+  // {
+  //   id: "neo-portfolio",
+  //   title: "Neo Portfolio",
+  //   description:
+  //     "Cyberpunk RPG-themed developer portfolio built with Next.js App Router, Clean Architecture and Framer Motion. A living system that tells a technical story.",
+  //   image: "/projects/neo-portfolio.min.webp",
+  //   techStack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+  //   xp: 1800,
+  //   featured: true,
+  //   status: "in-progress",
+  //   difficulty: 4,
+  //   role: "Solo Dev",
+  //   architecture: "Clean Architecture",
+  //   loot: {
+  //     primary: ["Next.js", "TypeScript", "Framer Motion"],
+  //     secondary: ["Tailwind CSS", "Vercel", "ESLint"],
+  //   },
+  //   devLog: {
+  //     challenge:
+  //       "Designing a portfolio that stands out from generic templates while maintaining real architectural discipline — not just style over substance.",
+  //     solution:
+  //       "Applied Clean Architecture (domain → application → infrastructure → presentation) to every feature. Each section is a self-contained 'feature module' with its own domain entities, use-cases and UI.",
+  //     architectureSnippet:
+  //       "Domain entities define the shape of data. Application hooks orchestrate use-cases. Infrastructure provides static data (soon: CMS). Presentation consumes via hooks — zero direct coupling.",
+  //   },
+  //   githubUrl: "https://github.com/eddyAlvaro/neo-portfolio",
+  // },
+    {
+    id: "better-resume",
+    title: "Better Resume",
+    description: "A dynamic and fully type-safe resume builder and profile management system built from scratch. Features a robust Monaco-powered JSON editor, comprehensive internationalization, and reliable persistence. Developed following Clean Architecture principles.",
+    image: "/projects/better-resume.min.webp", // Ajusta la ruta y extensión según corresponda
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Zustand", "Tailwind CSS 4", "Monaco Editor"],
+    xp: 3800,
     featured: true,
-    status: "in-progress",
+    status: "shipped",
     difficulty: 4,
     role: "Solo Dev",
     architecture: "Clean Architecture",
     loot: {
-      primary: ["Next.js", "TypeScript", "Framer Motion"],
-      secondary: ["Tailwind CSS", "Vercel", "ESLint"],
+      primary: ["Next.js 16", "React 19", "TypeScript", "Zustand"],
+      secondary: ["Monaco Editor", "Tailwind CSS 4", "Framer Motion", "Zod", "Vitest"]
     },
     devLog: {
-      challenge:
-        "Designing a portfolio that stands out from generic templates while maintaining real architectural discipline — not just style over substance.",
-      solution:
-        "Applied Clean Architecture (domain → application → infrastructure → presentation) to every feature. Each section is a self-contained 'feature module' with its own domain entities, use-cases and UI.",
-      architectureSnippet:
-        "Domain entities define the shape of data. Application hooks orchestrate use-cases. Infrastructure provides static data (soon: CMS). Presentation consumes via hooks — zero direct coupling.",
+      challenge: "Building a complex resume builder with a real-time JSON editor and internationalization from the ground up, while maintaining a clean, scalable architecture.",
+      solution: "Developed the application with strict layer separation. Decoupled the UI from business logic using Zustand for state management and Zod for domain schema validation, ensuring robust data persistence and type safety across React 19 components.",
+      architectureSnippet: "UI Layer [React 19 + Monaco] -> Presentation [Zustand] -> Domain Models [Zod] -> Infrastructure [Persistence]"
     },
-    githubUrl: "https://github.com/eddyAlvaro/neo-portfolio",
+    "githubUrl": "",
+    "demoUrl": "https://dev.resume.clickazo.com/",
+    liveDisclaimer: "A fully custom-built application leveraging modern Next.js 16/React 19 standards and Clean Architecture."
   },
   {
     id: "webpify",
