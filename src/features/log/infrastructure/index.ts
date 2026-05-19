@@ -2,6 +2,14 @@ import type { LogEntry } from "../domain";
 
 export const logData: LogEntry[] = [
   {
+    id: "log-008",
+    date: "2026-05-19",
+    title: "Better Resume: Build & Evolution",
+    body: "Developed a dynamic, type-safe resume builder from scratch using Monaco Editor. Recently executed a complete Clean Architecture refactor, leveraging Zustand and Zod to fully decouple business logic from the UI layer.",
+    tag: "MILESTONE",
+    color: "green",
+  },
+  {
     id: "log-006",
     date: "2026-04-15",
     title: "Developing WebPify",
