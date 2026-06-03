@@ -7,9 +7,9 @@ interface NeonButtonProps extends HTMLMotionProps<"button"> {
 }
 
 const variantMap = {
-  cyan: "border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 shadow-[0_0_12px_rgba(34,211,238,0.3)] hover:shadow-[0_0_24px_rgba(34,211,238,0.6)]",
-  fuchsia: "border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400/10 shadow-[0_0_12px_rgba(232,121,249,0.3)] hover:shadow-[0_0_24px_rgba(232,121,249,0.6)]",
-  green: "border-green-400 text-green-400 hover:bg-green-400/10 shadow-[0_0_12px_rgba(74,222,128,0.3)] hover:shadow-[0_0_24px_rgba(74,222,128,0.6)]",
+  cyan: "border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 dark:shadow-[0_0_12px_rgba(34,211,238,0.3)] dark:hover:shadow-[0_0_24px_rgba(34,211,238,0.6)]",
+  fuchsia: "border-neon-fuchsia text-neon-fuchsia hover:bg-neon-fuchsia/10 dark:shadow-[0_0_12px_rgba(232,121,249,0.3)] dark:hover:shadow-[0_0_24px_rgba(232,121,249,0.6)]",
+  green: "border-neon-green text-neon-green hover:bg-neon-green/10 dark:shadow-[0_0_12px_rgba(74,222,128,0.3)] dark:hover:shadow-[0_0_24px_rgba(74,222,128,0.6)]",
 };
 
 export function NeonButton({ variant = "cyan", children, className = "", ...props }: NeonButtonProps) {

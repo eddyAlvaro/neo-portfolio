@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { createPortal } from "react-dom";
 import type { Project } from "@/features/projects/domain";
@@ -14,7 +15,6 @@ interface ProjectImageModalProps {
 export function ProjectImageModal({ isOpen, onClose, project }: ProjectImageModalProps) {
   const prefersReduced = useReducedMotion();
 
-  // Bloquear scroll cuando el modal está abierto
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -26,7 +26,6 @@ export function ProjectImageModal({ isOpen, onClose, project }: ProjectImageModa
     };
   }, [isOpen]);
 
-  // Cerrar con Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -48,7 +47,7 @@ export function ProjectImageModal({ isOpen, onClose, project }: ProjectImageModa
     <AnimatePresence mode="wait">
       {isOpen && (
         <m.div
-          className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-base/80 backdrop-blur-md p-4 md:p-8"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -57,9 +56,8 @@ export function ProjectImageModal({ isOpen, onClose, project }: ProjectImageModa
           onClick={onClose}
           style={{ willChange: "opacity" }}
         >
-          {/* Botón Cerrar */}
           <m.button
-            className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 flex items-center justify-center text-cyan-400 font-mono text-xl border border-cyan-500/50 rounded-full bg-gray-950/80 hover:bg-cyan-900/40 hover:text-cyan-100 hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all z-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 flex items-center justify-center text-neon-cyan font-mono text-xl border border-neon-cyan/50 rounded-full bg-surface/80 hover:bg-neon-cyan/20 hover:text-text dark:hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all z-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan"
             onClick={(e) => {
               e.stopPropagation();
               onClose();
@@ -72,25 +70,30 @@ export function ProjectImageModal({ isOpen, onClose, project }: ProjectImageModa
             ×
           </m.button>
 
-          {/* Imagen Expandida (Shared Element) */}
           {project.image ? (
-            <m.img
+            <m.div
               layoutId={prefersReduced ? undefined : `project-image-${project.id}`}
-              src={project.image}
-              alt={`${project.title} full view`}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-900/50"
-              onClick={(e) => e.stopPropagation()} // Prevenir cierre al hacer click en la imagen
-              style={{ willChange: "transform" }}
-            />
+              className="relative max-w-full max-h-full rounded-lg dark:shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-neon-cyan/30 overflow-hidden"
+              style={{ willChange: "transform", width: "min(90vw, 900px)", aspectRatio: "16/9" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={project.image}
+                alt={`${project.title} full view`}
+                fill
+                sizes="min(90vw, 900px)"
+                className="object-contain"
+              />
+            </m.div>
           ) : (
             <m.div
               layoutId={prefersReduced ? undefined : `project-image-${project.id}`}
-              className="w-full max-w-2xl aspect-video bg-gray-950/80 flex flex-col items-center justify-center rounded-lg shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-900/50"
+              className="w-full max-w-2xl aspect-video bg-surface/80 flex flex-col items-center justify-center rounded-lg dark:shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-neon-cyan/30"
               onClick={(e) => e.stopPropagation()}
               style={{ willChange: "transform" }}
             >
-              <span className="font-mono text-[40px] opacity-80 text-cyan-400">◈</span>
-              <span className="font-mono text-sm text-gray-400 uppercase tracking-widest mt-4">
+              <span className="font-mono text-[40px] opacity-80 text-neon-cyan">◈</span>
+              <span className="font-mono text-sm text-muted uppercase tracking-widest mt-4">
                 No Preview
               </span>
             </m.div>

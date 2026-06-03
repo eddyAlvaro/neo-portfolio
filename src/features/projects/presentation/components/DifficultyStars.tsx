@@ -10,7 +10,7 @@ export function DifficultyStars({ value }: DifficultyStarsProps) {
       {Array.from({ length: 5 }, (_, i) => (
         <span 
           key={i} 
-          className={`font-mono text-[11px] ${i < value ? "text-yellow-400" : "text-gray-700"}`}
+          className={`font-mono text-[11px] ${i < value ? "text-neon-yellow" : "text-subtle/40"}`}
         >
           ★
         </span>

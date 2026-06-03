@@ -1,29 +1,30 @@
 
-
 import { Achievements } from "@/features/achievements";
 import { LoreLog } from "@/features/log";
 import { CharacterStats } from "@/features/profile";
 import { ProjectList } from "@/features/projects";
 import { EquippedSkills } from "@/features/skills";
 import { UnderConstruction } from "@/shared/components/ui/neon";
+import { ThemeToggle } from "@/shared/components/theme";
 
 export default function Home() {
   return (
-    <div className="min-h-screen lg:h-full w-full px-3 py-6 sm:px-5 md:px-8 lg:px-10 xl:px-12 flex flex-col overflow-auto lg:overflow-hidden bg-black text-gray-100">
+    <div className="min-h-screen lg:h-full w-full px-3 py-6 sm:px-5 md:px-8 lg:px-10 xl:px-12 flex flex-col overflow-auto lg:overflow-hidden bg-base text-text">
       {/* ── Page Header ── */}
       <header className="mb-4 flex flex-col gap-1 shrink-0">
         <div className="flex items-center gap-3">
-          <span className="text-[10px] font-mono tracking-[0.4em] text-cyan-600 uppercase">
+          <span className="text-[10px] font-mono tracking-[0.4em] text-neon-cyan/70 uppercase">
             System Online
           </span>
-          <span className="h-px flex-1 bg-linear-to-r from-cyan-900/60 to-transparent" />
-          <span className="text-[10px] font-mono text-gray-700">v0.0.1</span>
+          <span className="h-px flex-1 bg-linear-to-r from-neon-cyan/20 to-transparent" />
+          <ThemeToggle />
+          <span className="text-[10px] font-mono text-subtle">v0.0.1</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-          <h1 className="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-fuchsia-400 to-cyan-400">
+          <h1 className="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-linear-to-r from-neon-cyan via-neon-fuchsia to-neon-cyan">
             DEV_PORTFOLIO
           </h1>
-          <p className="font-mono text-lg text-gray-600 tracking-widest uppercase">
+          <p className="font-mono text-lg text-subtle tracking-widest uppercase">
             {"// Full-Stack Developer — Character Sheet Active"}
           </p>
         </div>
@@ -65,7 +66,6 @@ export default function Home() {
           aria-labelledby="section-skills"
         >
           <h2 id="section-skills" className="sr-only">Equipped Skills</h2>
-          {/* <UnderConstruction title="Equipped Skills" /> */}
           <EquippedSkills/>
         </section>
 

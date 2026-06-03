@@ -17,16 +17,16 @@ interface QuestActionButtonProps {
 
 const variantMap = {
   cyan: {
-    base: "border-cyan-500/50 text-cyan-400 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-[0_0_18px_rgba(34,211,238,0.45)]",
-    active: "border-cyan-400 bg-cyan-400/10 shadow-[0_0_18px_rgba(34,211,238,0.45)]",
+    base: "border-neon-cyan/50 text-neon-cyan hover:border-neon-cyan hover:bg-neon-cyan/10 dark:hover:shadow-[0_0_18px_rgba(34,211,238,0.45)]",
+    active: "border-neon-cyan bg-neon-cyan/10 dark:shadow-[0_0_18px_rgba(34,211,238,0.45)]",
   },
   fuchsia: {
-    base: "border-fuchsia-500/50 text-fuchsia-400 hover:border-fuchsia-400 hover:bg-fuchsia-400/10 hover:shadow-[0_0_18px_rgba(232,121,249,0.45)]",
-    active: "border-fuchsia-400 bg-fuchsia-400/10 shadow-[0_0_18px_rgba(232,121,249,0.45)]",
+    base: "border-neon-fuchsia/50 text-neon-fuchsia hover:border-neon-fuchsia hover:bg-neon-fuchsia/10 dark:hover:shadow-[0_0_18px_rgba(232,121,249,0.45)]",
+    active: "border-neon-fuchsia bg-neon-fuchsia/10 dark:shadow-[0_0_18px_rgba(232,121,249,0.45)]",
   },
   green: {
-    base: "border-green-500/50 text-green-400 hover:border-green-400 hover:bg-green-400/10 hover:shadow-[0_0_18px_rgba(74,222,128,0.45)]",
-    active: "border-green-400 bg-green-400/10 shadow-[0_0_18px_rgba(74,222,128,0.45)]",
+    base: "border-neon-green/50 text-neon-green hover:border-neon-green hover:bg-neon-green/10 dark:hover:shadow-[0_0_18px_rgba(74,222,128,0.45)]",
+    active: "border-neon-green bg-neon-green/10 dark:shadow-[0_0_18px_rgba(74,222,128,0.45)]",
   },
 };
 
