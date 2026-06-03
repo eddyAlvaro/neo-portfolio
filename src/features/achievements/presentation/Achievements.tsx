@@ -6,10 +6,10 @@ import { useAchievements } from "../application";
 import type { Achievement } from "../domain";
 
 const rarityConfig = {
-  common: { color: "text-gray-400 border-gray-600/50 bg-gray-800/30", glow: "" },
-  rare: { color: "text-cyan-400 border-cyan-600/50 bg-cyan-950/30", glow: "shadow-[0_0_8px_rgba(34,211,238,0.2)]" },
-  epic: { color: "text-fuchsia-400 border-fuchsia-600/50 bg-fuchsia-950/30", glow: "shadow-[0_0_10px_rgba(232,121,249,0.25)]" },
-  legendary: { color: "text-yellow-400 border-yellow-500/60 bg-yellow-950/30", glow: "shadow-[0_0_14px_rgba(250,204,21,0.35)]" },
+  common: { color: "text-muted border-line/30 bg-surface/30", glow: "" },
+  rare: { color: "text-neon-cyan border-neon-cyan/30 bg-neon-cyan/5", glow: "dark:shadow-[0_0_8px_rgba(34,211,238,0.2)]" },
+  epic: { color: "text-neon-fuchsia border-neon-fuchsia/30 bg-neon-fuchsia/5", glow: "dark:shadow-[0_0_10px_rgba(232,121,249,0.25)]" },
+  legendary: { color: "text-neon-yellow border-neon-yellow/40 bg-neon-yellow/5", glow: "dark:shadow-[0_0_14px_rgba(250,204,21,0.35)]" },
 };
 
 function AchievementRow({ achievement, index }: { achievement: Achievement; index: number }) {
@@ -37,9 +37,9 @@ function AchievementRow({ achievement, index }: { achievement: Achievement; inde
           <p className="font-mono font-bold text-xs truncate">{achievement.title}</p>
           <span className="text-[10px] font-mono uppercase opacity-60">{achievement.rarity}</span>
         </div>
-        <p className="text-[10px] font-mono text-gray-500 leading-relaxed">{achievement.description}</p>
+        <p className="text-[10px] font-mono text-muted leading-relaxed">{achievement.description}</p>
       </div>
-      <div className="shrink-0 text-[10px] font-mono text-gray-600 text-right">
+      <div className="shrink-0 text-[10px] font-mono text-subtle text-right">
         {new Date(achievement.unlockedAt).getFullYear()}
       </div>
     </m.div>
@@ -53,11 +53,11 @@ export function Achievements() {
   return (
     <LazyMotion features={domAnimation}>
       <NeonCard glowColor="yellow" className="flex flex-col gap-4 h-auto lg:h-full">
-        <div className="flex items-center justify-between border-b border-yellow-900/40 pb-3">
-          <span className="text-xs font-mono uppercase tracking-[0.3em] text-yellow-500">
+        <div className="flex items-center justify-between border-b border-neon-yellow/20 pb-3">
+          <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-yellow">
             ▸ Achievements
           </span>
-          <span className="text-xs font-mono text-gray-600">
+          <span className="text-xs font-mono text-subtle">
             {unlocked.length}/{achievements.length} unlocked
           </span>
         </div>

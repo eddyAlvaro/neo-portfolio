@@ -33,15 +33,15 @@ export function DisclaimerPopover({ disclaimer }: DisclaimerPopoverProps) {
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
-        className="text-yellow-500 cursor-pointer text-[12px] block outline-none focus:text-yellow-400" 
+        className="text-neon-yellow cursor-pointer text-[12px] block outline-none focus:text-neon-yellow/70" 
         aria-label="Disclaimer"
       >
         ⚠
       </motion.button>
-      <div className={`absolute top-[120%] mb-2 w-max max-w-50 p-2 bg-yellow-950/95 border border-yellow-900/50 rounded-lg shadow-xl shadow-yellow-900/20 transition-all duration-200 z-50 pointer-events-none ${alignmentClass} ${
+      <div className={`absolute top-[120%] mb-2 w-max max-w-50 p-2 bg-surface border border-neon-yellow/30 rounded-lg shadow-xl transition-all duration-200 z-50 pointer-events-none ${alignmentClass} ${
         isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-1"
       }`}>
-        <p className="text-[10px] font-mono text-yellow-500/90 italic leading-tight whitespace-normal">
+        <p className="text-[10px] font-mono text-neon-yellow/90 italic leading-tight whitespace-normal">
           [LOG_NOTE]: {disclaimer}
         </p>
       </div>

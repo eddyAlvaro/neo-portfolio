@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import Image from "next/image";
 import { m, LazyMotion, domAnimation, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NeonProgressBar } from "@/shared/components/ui/neon";
@@ -12,20 +12,20 @@ interface SkillCardProps {
 }
 
 const colorBorder = {
-  cyan: "border-cyan-500/40 hover:border-cyan-400/80 hover:shadow-[0_0_20px_rgba(34,211,238,0.35)]",
-  fuchsia: "border-fuchsia-500/40 hover:border-fuchsia-400/80 hover:shadow-[0_0_20px_rgba(232,121,249,0.35)]",
-  green: "border-green-500/40 hover:border-green-400/80 hover:shadow-[0_0_20px_rgba(74,222,128,0.35)]",
-  yellow: "border-yellow-500/40 hover:border-yellow-400/80 hover:shadow-[0_0_20px_rgba(250,204,21,0.35)]",
+  cyan: "border-neon-cyan/40 hover:border-neon-cyan/80 dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.35)]",
+  fuchsia: "border-neon-fuchsia/40 hover:border-neon-fuchsia/80 dark:hover:shadow-[0_0_20px_rgba(232,121,249,0.35)]",
+  green: "border-neon-green/40 hover:border-neon-green/80 dark:hover:shadow-[0_0_20px_rgba(74,222,128,0.35)]",
+  yellow: "border-neon-yellow/40 hover:border-neon-yellow/80 dark:hover:shadow-[0_0_20px_rgba(250,204,21,0.35)]",
 };
 
 const colorText = {
-  cyan: "text-cyan-400",
-  fuchsia: "text-fuchsia-400",
-  green: "text-green-400",
-  yellow: "text-yellow-400",
+  cyan: "text-neon-cyan",
+  fuchsia: "text-neon-fuchsia",
+  green: "text-neon-green",
+  yellow: "text-neon-yellow",
 };
 
-export function SkillCard({ skill, index }: SkillCardProps) {
+export const SkillCard = memo(function SkillCard({ skill, index }: SkillCardProps) {
   const [hovered, setHovered] = useState(false);
   const prefersReduced = useReducedMotion();
 
@@ -50,7 +50,7 @@ export function SkillCard({ skill, index }: SkillCardProps) {
       <div
         className={`
           relative flex flex-col items-center justify-center gap-1.5 p-1 rounded-xl
-          border bg-gray-950/70 backdrop-blur-sm
+          border bg-surface/70 backdrop-blur-sm
           cursor-pointer transition-all duration-300
           w-full h-full
           ${colorBorder[skill.color as keyof typeof colorBorder]}
@@ -59,12 +59,12 @@ export function SkillCard({ skill, index }: SkillCardProps) {
         <div className="w-[50%] aspect-square flex items-center justify-center">
           {skill.icon.startsWith("/") ? (
             <div className="relative w-full h-full">
-              <Image 
-                src={skill.icon} 
-                alt={skill.name} 
-                fill 
+              <Image
+                src={skill.icon}
+                alt={skill.name}
+                fill
                 sizes="(max-width: 768px) 80px, 120px"
-                className="object-contain" 
+                className="object-contain"
               />
             </div>
           ) : (
@@ -89,17 +89,17 @@ export function SkillCard({ skill, index }: SkillCardProps) {
             style={{ willChange: "transform, opacity" }}
             className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-3 w-52 pointer-events-none"
           >
-            <div className="bg-gray-950/95 border border-cyan-500/60 rounded-xl p-3 shadow-[0_0_20px_rgba(34,211,238,0.3)] backdrop-blur-md">
+            <div className="bg-surface/95 border border-neon-cyan/60 rounded-xl p-3 dark:shadow-[0_0_20px_rgba(34,211,238,0.3)] backdrop-blur-md">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-6 flex items-center justify-center">
                   {skill.icon.startsWith("/") ? (
                     <div className="relative w-full h-full">
-                      <Image 
-                        src={skill.icon} 
-                        alt={skill.name} 
-                        fill 
+                      <Image
+                        src={skill.icon}
+                        alt={skill.name}
+                        fill
                         sizes="24px"
-                        className="object-contain" 
+                        className="object-contain"
                       />
                     </div>
                   ) : (
@@ -107,11 +107,11 @@ export function SkillCard({ skill, index }: SkillCardProps) {
                   )}
                 </div>
                 <div>
-                  <p className="font-mono font-bold text-sm text-cyan-100">{skill.name}</p>
-                  <p className="text-xs font-mono text-gray-500 uppercase">{skill.category}</p>
+                  <p className="font-mono font-bold text-sm text-text">{skill.name}</p>
+                  <p className="text-xs font-mono text-muted uppercase">{skill.category}</p>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 font-mono leading-relaxed mb-2">
+              <p className="text-xs text-muted font-mono leading-relaxed mb-2">
                 {skill.description}
               </p>
               <NeonProgressBar
@@ -121,7 +121,7 @@ export function SkillCard({ skill, index }: SkillCardProps) {
                 delay={0}
               />
               {/* Triangle */}
-              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-950 border-r border-b border-cyan-500/60 rotate-45" />
+              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-surface border-r border-b border-neon-cyan/60 rotate-45" />
             </div>
           </m.div>
         )}
@@ -129,4 +129,4 @@ export function SkillCard({ skill, index }: SkillCardProps) {
     </m.div>
     </LazyMotion>
   );
-}
+});

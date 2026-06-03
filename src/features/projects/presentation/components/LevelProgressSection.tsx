@@ -12,8 +12,8 @@ export function LevelProgressSection() {
   return (
     <LazyMotion features={domAnimation}>
       <NeonCard glowColor="green" className="flex flex-col gap-4">
-        <div className="border-b border-green-900/50 pb-3">
-          <span className="text-xs font-mono uppercase tracking-[0.3em] text-green-500">
+        <div className="border-b border-neon-green/20 pb-3">
+          <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-green">
             ▸ Level Progress
           </span>
         </div>
@@ -23,22 +23,22 @@ export function LevelProgressSection() {
               animate={prefersReduced ? {} : { opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 2, repeat: Infinity }}
               style={{ willChange: "opacity" }}
-              className="w-14 h-14 rounded-xl border-2 border-green-400 bg-green-950/50 shadow-[0_0_14px_rgba(74,222,128,0.5)] flex items-center justify-center"
+              className="w-14 h-14 rounded-xl border-2 border-neon-green bg-neon-green/10 dark:shadow-[0_0_14px_rgba(74,222,128,0.5)] flex items-center justify-center"
             >
-              <span className="font-mono font-black text-green-400 text-xl">
+              <span className="font-mono font-black text-neon-green text-xl">
                 {progress.currentLevel}
               </span>
             </motion.div>
             <div>
-              <p className="text-xs text-gray-500 font-mono uppercase">Current Level</p>
-              <p className="text-sm font-mono font-bold text-green-100">
+              <p className="text-xs text-muted font-mono uppercase">Current Level</p>
+              <p className="text-sm font-mono font-bold text-text">
                 {progress.currentXP.toLocaleString()} / {progress.nextLevelXP.toLocaleString()} XP
               </p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xs text-gray-600 font-mono">Total XP</p>
-            <p className="text-sm font-mono font-bold text-fuchsia-400">
+            <p className="text-xs text-subtle font-mono">Total XP</p>
+            <p className="text-sm font-mono font-bold text-neon-fuchsia">
               {progress.totalXP.toLocaleString()}
             </p>
           </div>

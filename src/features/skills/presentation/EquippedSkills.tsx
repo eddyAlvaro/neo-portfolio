@@ -12,19 +12,25 @@ export function EquippedSkills() {
   const [itemsPerPage, setItemsPerPage] = useState(12);
 
   useEffect(() => {
+    let rafId: number;
     const handleResize = () => {
-      const width = window.innerWidth;
-      let newLimit = 16;
-      if (width >= 1280) newLimit = 12; // xl
-      else if (width >= 1024) newLimit = 6;  // lg
-      
-      setItemsPerPage(newLimit);
-      setCurrentPage(0); // Reset to page 0 whenever the layout changes
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const width = window.innerWidth;
+        let newLimit = 16;
+        if (width >= 1280) newLimit = 12; // xl
+        else if (width >= 1024) newLimit = 6;  // lg
+        setItemsPerPage(newLimit);
+        setCurrentPage(0);
+      });
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const totalPages = Math.ceil(skills.length / itemsPerPage);
@@ -36,11 +42,11 @@ export function EquippedSkills() {
   return (
     <NeonCard glowColor="fuchsia" className="flex flex-col gap-4 h-auto lg:h-full">
       {/* Header */}
-      <div className="border-b border-fuchsia-900/50 pb-3 shrink-0">
-        <span className="text-xs font-mono uppercase tracking-[0.3em] text-fuchsia-500">
+      <div className="border-b border-neon-fuchsia/20 pb-3 shrink-0">
+        <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-fuchsia">
           ▸ Equipped Skills
         </span>
-        <p className="text-xs text-gray-600 font-mono mt-1">
+        <p className="text-xs text-subtle font-mono mt-1">
           {currentPage + 1} / {totalPages} — SLOTS_ACTIVE
         </p>
       </div>

@@ -130,7 +130,7 @@ export const projectsMocks: Project[] = [
     title: "GymU",
     description:
       "Mobile-first workout tracker that turns every gym session into a structured training log with progress charts and streak gamification.",
-    image: "/projects/gymu.jpeg",
+    image: "/projects/gymu.webp",
     techStack: ["Flutter", "Dart"],
     xp: 1800,
     featured: false,
