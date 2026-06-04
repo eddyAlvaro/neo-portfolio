@@ -4,7 +4,7 @@ import { LoreLog } from "@/features/log";
 import { CharacterStats } from "@/features/profile";
 import { ProjectList } from "@/features/projects";
 import { EquippedSkills } from "@/features/skills";
-import { UnderConstruction } from "@/shared/components/ui/neon";
+import { SaveTerminal } from "@/features/contact";
 import { ThemeToggle } from "@/shared/components/theme";
 
 export default function Home() {
@@ -116,7 +116,7 @@ export default function Home() {
           aria-labelledby="section-contact"
         >
           <h2 id="section-contact" className="sr-only">Save Terminal</h2>
-          <UnderConstruction title="Save Terminal" />
+          <SaveTerminal />
         </section>
 
         {/* ── LOG ── */}

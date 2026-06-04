@@ -1,4 +1,4 @@
-import type { SocialLink } from "../domain";
+import type { ContactForm, SocialLink } from "../domain";
 
 export const socialLinks: SocialLink[] = [
   {
@@ -22,23 +22,13 @@ export const socialLinks: SocialLink[] = [
   //   url: "https://x.com",
   //   color: "cyan",
   // },
-  {
-    id: "email",
-    label: "Email",
-    icon: "@",
-    url: "mailto:e.alvaro.arenas@gmail.com",
-    color: "green",
-  },
 ];
 
-export async function submitContactForm(data: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}): Promise<{ success: boolean }> {
-  // Simulate API call – replace with real endpoint
-  await new Promise((resolve) => setTimeout(resolve, 1200));
-  console.log("Contact form submitted:", data);
-  return { success: true };
+export async function submitContactForm(data: ContactForm): Promise<{ success: boolean }> {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return { success: res.ok };
 }
