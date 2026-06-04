@@ -1,10 +1,12 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+let _resend: Resend | null = null;
+const getResend = () => (_resend ??= new Resend(process.env.RESEND_API_KEY));
+
 export async function POST(request: Request) {
+  const resend = getResend();
   const body = await request.json().catch(() => null);
   if (!body) return Response.json({ success: false }, { status: 400 });
 
