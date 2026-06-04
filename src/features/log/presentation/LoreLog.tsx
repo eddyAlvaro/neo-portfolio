@@ -1,6 +1,6 @@
 "use client";
 
-import { m, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { NeonCard } from "@/shared/components/ui/neon";
 import { useLog } from "../application";
 import type { LogEntry } from "../domain";
@@ -40,22 +40,16 @@ function LogEntryRow({ entry, index }: { entry: LogEntry; index: number }) {
 
 export function LoreLog() {
   const entries = useLog();
-  const prefersReduced = useReducedMotion();
 
   return (
-    <LazyMotion features={domAnimation}>
-      <NeonCard glowColor="cyan" className="flex flex-col gap-4 h-auto lg:h-full">
+    <NeonCard glowColor="cyan" className="flex flex-col gap-4 h-auto lg:h-full">
         <div className="border-b border-neon-cyan/20 pb-3 flex items-center justify-between">
           <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-cyan">
             ▸ Lore Log
           </span>
-          <m.span
-            animate={prefersReduced ? {} : { opacity: [1, 0.2, 1] }}
-            transition={{ duration: 1.2, repeat: Infinity }}
-            className="text-[10px] font-mono text-neon-green"
-          >
+          <span className="neon-pulse text-[10px] font-mono text-neon-green">
             ● LIVE
-          </m.span>
+          </span>
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto px-2 flex-1 custom-scrollbar min-h-0 max-h-100">
           {entries.map((entry, i) => (
@@ -63,6 +57,5 @@ export function LoreLog() {
           ))}
         </div>
       </NeonCard>
-    </LazyMotion>
   );
 }

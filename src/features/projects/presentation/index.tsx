@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  LazyMotion,
-  domAnimation,
-  AnimatePresence,
-} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import {
   NeonCard,
   NeonSliderProgress,
@@ -36,8 +32,7 @@ export function FeaturedProjects() {
   const activeProject = featured[activeIndex];
 
   return (
-    <LazyMotion features={domAnimation}>
-      <NeonCard glowColor="fuchsia" className="flex flex-col gap-4 h-full" hover={false}>
+    <NeonCard glowColor="fuchsia" className="flex flex-col gap-4 h-full" hover={false}>
         {/* Header */}
         <div className="border-b border-neon-fuchsia/20 pb-3 flex items-center justify-between">
           <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-fuchsia">
@@ -114,7 +109,6 @@ export function FeaturedProjects() {
           </>
         )}
       </NeonCard>
-    </LazyMotion>
   );
 }
 

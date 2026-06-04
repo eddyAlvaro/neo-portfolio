@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { QuestActionButton } from "@/shared/components/ui/neon";
 import type { Project } from "../../domain";
 import { DifficultyStars } from "./DifficultyStars";
@@ -46,7 +46,7 @@ export const ProjectCard = memo(function ProjectCard({ project, direction }: Pro
   const status = statusConfig[project.status];
 
   return (
-    <motion.article
+    <m.article
       key={project.id}
       id={`quest-${project.id}`}
       custom={direction}
@@ -58,9 +58,9 @@ export const ProjectCard = memo(function ProjectCard({ project, direction }: Pro
       style={{ willChange: "opacity, transform" }}
       className="
         flex flex-col gap-3 p-4 rounded-xl
-        border border-neon-fuchsia/20 bg-surface/70
+        border border-neon-fuchsia/20 bg-surface/90
         hover:border-neon-fuchsia/50 dark:hover:shadow-[0_0_20px_rgba(232,121,249,0.18)]
-        transition-colors duration-300 backdrop-blur-sm
+        transition-colors duration-300
       "
     >
       {/* Row 1: Media + Header */}
@@ -143,6 +143,6 @@ export const ProjectCard = memo(function ProjectCard({ project, direction }: Pro
 
       {/* Collapsible DevLog */}
       <TechnicalLog project={project} isOpen={devlogOpen} />
-    </motion.article>
+    </m.article>
   );
 });

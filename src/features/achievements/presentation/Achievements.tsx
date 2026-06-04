@@ -1,6 +1,6 @@
 "use client";
 
-import { m, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { NeonCard } from "@/shared/components/ui/neon";
 import { useAchievements } from "../application";
 import type { Achievement } from "../domain";
@@ -51,8 +51,7 @@ export function Achievements() {
   const unlocked = achievements.filter((a) => a.unlocked);
 
   return (
-    <LazyMotion features={domAnimation}>
-      <NeonCard glowColor="yellow" className="flex flex-col gap-4 h-auto lg:h-full">
+    <NeonCard glowColor="yellow" className="flex flex-col gap-4 h-auto lg:h-full">
         <div className="flex items-center justify-between border-b border-neon-yellow/20 pb-3">
           <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-yellow">
             ▸ Achievements
@@ -67,6 +66,5 @@ export function Achievements() {
           ))}
         </div>
       </NeonCard>
-    </LazyMotion>
   );
 }

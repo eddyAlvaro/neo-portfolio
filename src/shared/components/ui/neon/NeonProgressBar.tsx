@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface NeonProgressBarProps {
   label: string;
@@ -59,10 +59,11 @@ export function NeonProgressBar({
         )}
       </div>
       <div className={`relative h-2.5 w-full rounded-full ${c.track} overflow-hidden`}>
-        <motion.div
+        <m.div
           className={`h-full rounded-full ${c.bar} ${c.glow}`}
-          initial={{ width: 0 }}
-          animate={{ width: `${value}%` }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: value / 100 }}
+          style={{ transformOrigin: "left" }}
           transition={{ duration: 1.2, delay, ease: "easeOut" }}
         />
       </div>
