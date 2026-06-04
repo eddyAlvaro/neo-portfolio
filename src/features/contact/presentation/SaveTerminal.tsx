@@ -1,6 +1,6 @@
 "use client";
 
-import { m, LazyMotion, domAnimation, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NeonCard, NeonButton, NeonInput, NeonTextarea } from "@/shared/components/ui/neon";
 import { useContactForm, useSocials } from "../application";
 
@@ -27,7 +27,6 @@ export function SaveTerminal() {
   };
 
   return (
-    <LazyMotion features={domAnimation}>
     <NeonCard glowColor="fuchsia" className="flex flex-col gap-5 h-auto lg:h-full">
       {/* Terminal header */}
       <div className="border-b border-fuchsia-900/50 pb-3">
@@ -151,6 +150,5 @@ export function SaveTerminal() {
         </div>
       </div>
     </NeonCard>
-    </LazyMotion>
   );
 }

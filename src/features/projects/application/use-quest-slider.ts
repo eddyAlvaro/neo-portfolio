@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useMotionValue, type MotionValue } from "framer-motion";
 
 const AUTOPLAY_INTERVAL = 6000; // 6 s
 
@@ -12,7 +13,7 @@ export interface UseQuestSliderReturn {
   activeIndex: number;
   direction: 1 | -1;
   isPaused: boolean;
-  progress: number; // 0–100
+  progress: MotionValue<number>;
   goNext: () => void;
   goPrev: () => void;
   goTo: (index: number) => void;
@@ -35,7 +36,7 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
   const [direction, setDirection] = useState<1 | -1>(1);
   const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlayDisabled, setIsAutoPlayDisabled] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const progress = useMotionValue(0);
 
   // Tick ref so the RAF loop always reads current values
   const startTimeRef = useRef<number>(0);
@@ -50,10 +51,10 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
       if (isManual) setIsAutoPlayDisabled(true);
       setDirection(dir);
       setActiveIndex((i) => (i + dir + total) % total);
-      setProgress(0);
+      progress.set(0);
       startTimeRef.current = performance.now();
     },
-    [total],
+    [total, progress],
   );
 
   const goNext = useCallback(() => advance(1, true), [advance]);
@@ -63,10 +64,10 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
       setIsAutoPlayDisabled(true);
       setDirection((prev) => (index > prev ? 1 : -1));
       setActiveIndex(index);
-      setProgress(0);
+      progress.set(0);
       startTimeRef.current = performance.now();
     },
-    [],
+    [progress],
   );
 
   // RAF-based progress ticker — GPU-friendly, no setState on every ms
@@ -75,7 +76,7 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
       if (!isPausedRef.current && !isAutoPlayDisabledRef.current) {
         const elapsed = now - startTimeRef.current;
         const pct = Math.min((elapsed / AUTOPLAY_INTERVAL) * 100, 100);
-        setProgress(pct);
+        progress.set(pct);
 
         if (elapsed >= AUTOPLAY_INTERVAL) {
           advance(1);
@@ -91,7 +92,7 @@ export function useQuestSlider({ total }: UseQuestSliderOptions): UseQuestSlider
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [advance]);
+  }, [advance, progress]);
 
   // Sync state to refs for closure stability
   useEffect(() => {

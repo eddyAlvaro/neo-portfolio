@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/shared/components/theme";
+import { MotionProvider } from "@/shared/components/motion/MotionProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -37,7 +38,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider><MotionProvider>{children}</MotionProvider></ThemeProvider>
       </body>
     </html>
   );

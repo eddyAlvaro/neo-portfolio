@@ -2,7 +2,7 @@
 
 import { memo, useState } from "react";
 import Image from "next/image";
-import { m, LazyMotion, domAnimation, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NeonProgressBar } from "@/shared/components/ui/neon";
 import type { Skill } from "../../domain";
 
@@ -30,7 +30,6 @@ export const SkillCard = memo(function SkillCard({ skill, index }: SkillCardProp
   const prefersReduced = useReducedMotion();
 
   return (
-    <LazyMotion features={domAnimation}>
     <m.div
       initial={prefersReduced ? false : { opacity: 0, scale: 0.85 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -50,7 +49,7 @@ export const SkillCard = memo(function SkillCard({ skill, index }: SkillCardProp
       <div
         className={`
           relative flex flex-col items-center justify-center gap-1.5 p-1 rounded-xl
-          border bg-surface/70 backdrop-blur-sm
+          border bg-surface/90
           cursor-pointer transition-all duration-300
           w-full h-full
           ${colorBorder[skill.color as keyof typeof colorBorder]}
@@ -89,7 +88,7 @@ export const SkillCard = memo(function SkillCard({ skill, index }: SkillCardProp
             style={{ willChange: "transform, opacity" }}
             className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-3 w-52 pointer-events-none"
           >
-            <div className="bg-surface/95 border border-neon-cyan/60 rounded-xl p-3 dark:shadow-[0_0_20px_rgba(34,211,238,0.3)] backdrop-blur-md">
+            <div className="bg-surface/95 border border-neon-cyan/60 rounded-xl p-3 dark:shadow-[0_0_20px_rgba(34,211,238,0.3)]">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-6 flex items-center justify-center">
                   {skill.icon.startsWith("/") ? (
@@ -127,6 +126,5 @@ export const SkillCard = memo(function SkillCard({ skill, index }: SkillCardProp
         )}
       </AnimatePresence>
     </m.div>
-    </LazyMotion>
   );
 });

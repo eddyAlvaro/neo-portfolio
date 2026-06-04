@@ -27,6 +27,8 @@ export function CharacterStats() {
               playsInline
               preload="none"
               poster="/images/profile.min.webp"
+              width={160}
+              height={160}
               className="aspect-square object-cover mx-auto w-32 md:w-40 lg:w-32 md:max-w-25 my-2"
             >
               <source src="/profile.mp4" type="video/mp4" />

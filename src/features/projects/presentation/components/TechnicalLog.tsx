@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { Project } from "../../domain";
 
 interface TechnicalLogProps {
@@ -9,14 +9,16 @@ interface TechnicalLogProps {
 }
 
 export function TechnicalLog({ project, isOpen }: TechnicalLogProps) {
+  const prefersReduced = useReducedMotion();
+
   return (
     <AnimatePresence initial={false}>
       {isOpen && (
-        <motion.div
+        <m.div
           key="devlog"
-          initial={{ opacity: 0, height: 0 }}
+          initial={prefersReduced ? false : { opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
+          exit={prefersReduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{ overflow: "hidden" }}
         >
@@ -48,7 +50,7 @@ export function TechnicalLog({ project, isOpen }: TechnicalLogProps) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

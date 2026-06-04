@@ -1,34 +1,30 @@
 "use client";
 
-import { motion, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { NeonCard, NeonProgressBar } from "@/shared/components/ui/neon";
 import { useLevelProgress } from "../../application/use-projects";
 
 export function LevelProgressSection() {
   const progress = useLevelProgress();
   const pct = Math.round((progress.currentXP / progress.nextLevelXP) * 100);
-  const prefersReduced = useReducedMotion();
 
   return (
-    <LazyMotion features={domAnimation}>
-      <NeonCard glowColor="green" className="flex flex-col gap-4">
-        <div className="border-b border-neon-green/20 pb-3">
-          <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-green">
-            ▸ Level Progress
-          </span>
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <motion.div
-              animate={prefersReduced ? {} : { opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              style={{ willChange: "opacity" }}
-              className="w-14 h-14 rounded-xl border-2 border-neon-green bg-neon-green/10 dark:shadow-[0_0_14px_rgba(74,222,128,0.5)] flex items-center justify-center"
-            >
-              <span className="font-mono font-black text-neon-green text-xl">
-                {progress.currentLevel}
-              </span>
-            </motion.div>
+    <NeonCard glowColor="green" className="flex flex-col gap-4">
+      <div className="border-b border-neon-green/20 pb-3">
+        <span className="text-xs font-mono uppercase tracking-[0.3em] text-neon-green">
+          ▸ Level Progress
+        </span>
+      </div>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <m.div
+            whileHover={{ scale: 1.05 }}
+            className="w-14 h-14 rounded-xl border-2 border-neon-green bg-neon-green/10 dark:shadow-[0_0_14px_rgba(74,222,128,0.5)] flex items-center justify-center"
+          >
+            <span className="font-mono font-black text-neon-green text-xl">
+              {progress.currentLevel}
+            </span>
+          </m.div>
             <div>
               <p className="text-xs text-muted font-mono uppercase">Current Level</p>
               <p className="text-sm font-mono font-bold text-text">
@@ -44,7 +40,6 @@ export function LevelProgressSection() {
           </div>
         </div>
         <NeonProgressBar label="XP to next level" value={pct} color="green" delay={0.3} />
-      </NeonCard>
-    </LazyMotion>
+    </NeonCard>
   );
 }

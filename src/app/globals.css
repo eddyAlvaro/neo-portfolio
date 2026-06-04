@@ -166,6 +166,22 @@ body {
   animation: neon-pulse 2s ease-in-out infinite;
 }
 
+@keyframes loading-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+.loading-sweep {
+  animation: loading-sweep 1.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }

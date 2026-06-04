@@ -48,12 +48,17 @@ export function ProjectImageVisor({ project }: ProjectImageVisorProps) {
           rounded-lg overflow-hidden group/visor
           border border-neon-cyan/30
           dark:shadow-[0_0_14px_rgba(34,211,238,0.15)]
-          transition-all duration-300
-          dark:hover:shadow-[0_0_28px_rgba(34,211,238,0.45)] hover:border-neon-cyan/70
+          transition-[border-color] duration-300
+          hover:border-neon-cyan/70
           cursor-pointer
         "
         style={{ willChange: "transform" }}
       >
+        {/* Pre-rendered hover glow — opacity transition is compositor-only */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-30 rounded-lg opacity-0 transition-opacity duration-300 dark:group-hover/visor:opacity-100 dark:shadow-[0_0_28px_rgba(34,211,238,0.45)]"
+        />
         {/* ── Corner visor brackets (Subtle focus indicator) ────────────────── */}
         <span className="pointer-events-none absolute inset-0 z-20">
           <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-neon-cyan rounded-tl group-hover/visor:w-5 group-hover/visor:h-5 dark:group-hover/visor:shadow-[0_0_8px_rgba(34,211,238,0.7)] transition-all duration-300" />

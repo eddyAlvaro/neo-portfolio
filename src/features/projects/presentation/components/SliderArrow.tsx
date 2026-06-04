@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface SliderArrowProps {
   direction: "prev" | "next";
@@ -9,7 +9,7 @@ interface SliderArrowProps {
 
 export function SliderArrow({ direction, onClick }: SliderArrowProps) {
   return (
-    <motion.button
+    <m.button
       onClick={onClick}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.9 }}
@@ -17,7 +17,7 @@ export function SliderArrow({ direction, onClick }: SliderArrowProps) {
       aria-label={direction === "prev" ? "Previous project" : "Next project"}
       className="
         w-8 h-8 flex items-center justify-center shrink-0
-        rounded-md border border-neon-fuchsia/50 bg-surface/80 backdrop-blur-sm
+        rounded-md border border-neon-fuchsia/50 bg-surface/90
         text-neon-fuchsia font-mono text-sm
         hover:border-neon-fuchsia hover:bg-neon-fuchsia/10
         dark:hover:shadow-[0_0_14px_rgba(232,121,249,0.5)]
@@ -27,6 +27,6 @@ export function SliderArrow({ direction, onClick }: SliderArrowProps) {
       style={{ willChange: "transform" }}
     >
       {direction === "prev" ? "‹" : "›"}
-    </motion.button>
+    </m.button>
   );
 }

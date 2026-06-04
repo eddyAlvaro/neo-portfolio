@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { NeonCard } from "./NeonCard";
 
 interface UnderConstructionProps {
@@ -15,13 +14,9 @@ export function UnderConstruction({ title }: UnderConstructionProps) {
       </div>
 
       <div className="flex flex-col items-center gap-2 text-center z-10 px-4">
-        <motion.span
-          animate={{ opacity: [1, 0.4, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="text-[10px] font-mono tracking-[0.4em] text-neon-yellow uppercase border border-neon-yellow/30 px-3 py-1 rounded-sm bg-neon-yellow/10"
-        >
+        <span className="neon-pulse text-[10px] font-mono tracking-[0.4em] text-neon-yellow uppercase border border-neon-yellow/30 px-3 py-1 rounded-sm bg-neon-yellow/10">
           [ STATUS: RECONSTRUCTING ]
-        </motion.span>
+        </span>
         <h3 className="text-2xl font-mono font-black text-text tracking-widest uppercase mt-4 italic">
           <span className="text-neon-yellow relative">
             {title}
@@ -32,12 +27,7 @@ export function UnderConstruction({ title }: UnderConstructionProps) {
 
       <div className="flex flex-col items-center gap-3 z-10 w-full px-12">
         <div className="w-full max-w-50 h-1 bg-neon-yellow/10 rounded-full overflow-hidden relative border border-neon-yellow/20">
-          <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "100%" }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 bottom-0 w-1/2 bg-linear-to-r from-transparent via-neon-yellow to-transparent dark:shadow-[0_0_8px_#facc15]"
-          />
+          <div className="loading-sweep absolute top-0 bottom-0 w-1/2 bg-linear-to-r from-transparent via-neon-yellow to-transparent dark:shadow-[0_0_8px_#facc15]" />
         </div>
         <span className="text-[9px] font-mono text-neon-yellow/60 uppercase tracking-tighter">
           {"// Loading data modules..."}
