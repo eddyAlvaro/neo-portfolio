@@ -2,6 +2,34 @@ import type { Project, LevelProgress } from "../../domain";
 
 export const projectsMocksEs: Project[] = [
   {
+    id: "apparel-ecosystem",
+    title: "Apparel: Ecosistema de E-commerce de Moda",
+    description:
+      "Plataforma de e-commerce de moda peruana con tres aplicaciones — una API en NestJS, un storefront en Angular con SSR y un panel de administración en Angular basado en signals — construida alrededor del manejo de impuestos conforme a SUNAT y reserva de stock en tiempo real sobre un catálogo de variantes talla x color.",
+    image: "/projects/apparel-ecosystem.min.webp",
+    techStack: ["NestJS", "Angular 19", "TypeScript", "PostgreSQL", "Prisma", "Redis", "BullMQ"],
+    xp: 4600,
+    featured: true,
+    status: "in-progress",
+    difficulty: 5,
+    role: "Full-Stack",
+    architecture: "Clean Architecture",
+    loot: {
+      primary: ["NestJS", "Angular", "TypeScript", "PostgreSQL"],
+      secondary: ["Prisma", "Redis", "BullMQ", "SSR", "Signals", "Zod"],
+    },
+    devLog: {
+      challenge:
+        "Coordinar una API, un storefront con SSR y un admin SPA alrededor de reglas fiscales conformes a SUNAT y un stock de prendas finito, donde una variante talla x color puede sobrevenderse si la reserva y el cumplimiento de pedidos se desalinean.",
+      solution:
+        "Mantuve la lógica de impuestos, descuentos y pedidos en una capa `core/` pura, sin dependencias de Nest ni de I/O — el IGV se extrae, nunca se suma, y los descuentos se escriben como filas `LineItemAdjustment` en vez de mutar el precio unitario, para que los reembolsos parciales sigan siendo reconciliables. Las cantidades reservadas y las en stock se rastrean por separado para que las reservas del carrito se liberen limpiamente sin tocar el stock real.",
+      architectureSnippet:
+        "Storefront SSR en Angular (4200) + Admin SPA en Angular (4300) -> API NestJS (3000, cookies httpOnly, sin BFF) -> Dominio central (TS puro: rules/totals/order) -> Prisma -> PostgreSQL + Redis/BullMQ",
+    },
+    githubUrl: "",
+    demoUrl: "",
+  },
+  {
     id: "better-resume",
     title: "Better Resume",
     description: "Un generador de currículums y sistema de gestión de perfiles dinámico y completamente type-safe, construido desde cero. Incluye un robusto editor JSON impulsado por Monaco, internacionalización completa y persistencia confiable. Desarrollado siguiendo los principios de Clean Architecture.",
@@ -169,34 +197,6 @@ export const projectsMocksEs: Project[] = [
     githubUrl: "",
     demoUrl: "https://innovahope.com",
     liveDisclaimer: "La versión en vivo actual podría incluir actualizaciones externas más allá de mi mantenimiento inicial del sistema.",
-  },
-  {
-    id: "apparel-ecosystem",
-    title: "Apparel: Ecosistema de E-commerce de Moda",
-    description:
-      "Plataforma de e-commerce de moda peruana con tres aplicaciones — una API en NestJS, un storefront en Angular con SSR y un panel de administración en Angular basado en signals — construida alrededor del manejo de impuestos conforme a SUNAT y reserva de stock en tiempo real sobre un catálogo de variantes talla x color.",
-    image: "",
-    techStack: ["NestJS", "Angular 19", "TypeScript", "PostgreSQL", "Prisma", "Redis", "BullMQ"],
-    xp: 4600,
-    featured: true,
-    status: "in-progress",
-    difficulty: 5,
-    role: "Full-Stack",
-    architecture: "Clean Architecture",
-    loot: {
-      primary: ["NestJS", "Angular", "TypeScript", "PostgreSQL"],
-      secondary: ["Prisma", "Redis", "BullMQ", "SSR", "Signals", "Zod"],
-    },
-    devLog: {
-      challenge:
-        "Coordinar una API, un storefront con SSR y un admin SPA alrededor de reglas fiscales conformes a SUNAT y un stock de prendas finito, donde una variante talla x color puede sobrevenderse si la reserva y el cumplimiento de pedidos se desalinean.",
-      solution:
-        "Mantuve la lógica de impuestos, descuentos y pedidos en una capa `core/` pura, sin dependencias de Nest ni de I/O — el IGV se extrae, nunca se suma, y los descuentos se escriben como filas `LineItemAdjustment` en vez de mutar el precio unitario, para que los reembolsos parciales sigan siendo reconciliables. Las cantidades reservadas y las en stock se rastrean por separado para que las reservas del carrito se liberen limpiamente sin tocar el stock real.",
-      architectureSnippet:
-        "Storefront SSR en Angular (4200) + Admin SPA en Angular (4300) -> API NestJS (3000, cookies httpOnly, sin BFF) -> Dominio central (TS puro: rules/totals/order) -> Prisma -> PostgreSQL + Redis/BullMQ",
-    },
-    githubUrl: "",
-    demoUrl: "",
   },
 ];
 

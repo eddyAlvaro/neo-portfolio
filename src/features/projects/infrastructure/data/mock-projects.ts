@@ -1,6 +1,34 @@
 import type { Project, LevelProgress } from "../../domain";
 
 export const projectsMocks: Project[] = [
+  {
+    id: "apparel-ecosystem",
+    title: "Apparel: Fashion E-commerce Ecosystem",
+    description:
+      "Three-app Peruvian fashion e-commerce platform — a NestJS API, an SSR Angular storefront and a signals-based Angular admin — built around SUNAT-compliant tax handling and real-time stock reservation across a size x colour variant catalogue.",
+    image: "/projects/apparel-ecosystem.min.webp",
+    techStack: ["NestJS", "Angular 19", "TypeScript", "PostgreSQL", "Prisma", "Redis", "BullMQ"],
+    xp: 4600,
+    featured: true,
+    status: "in-progress",
+    difficulty: 5,
+    role: "Full-Stack",
+    architecture: "Clean Architecture",
+    loot: {
+      primary: ["NestJS", "Angular", "TypeScript", "PostgreSQL"],
+      secondary: ["Prisma", "Redis", "BullMQ", "SSR", "Signals", "Zod"],
+    },
+    devLog: {
+      challenge:
+        "Coordinating an API, an SSR storefront and an SPA admin around SUNAT-compliant tax rules and a finite apparel stock, where a size x colour variant can be oversold if reservation and fulfillment logic drift apart.",
+      solution:
+        "Kept tax, discount and order math in a pure `core/` layer with zero Nest or I/O dependencies — IGV is extracted, never added, and discounts are written as `LineItemAdjustment` rows instead of mutating unit prices so partial refunds stay reconcilable. Reserved and stocked quantities are tracked separately so cart holds release cleanly without touching real stock.",
+      architectureSnippet:
+        "Angular SSR Storefront (4200) + Angular SPA Admin (4300) -> NestJS API (3000, httpOnly cookies, no BFF) -> Core domain (pure TS: rules/totals/order) -> Prisma -> PostgreSQL + Redis/BullMQ",
+    },
+    githubUrl: "",
+    demoUrl: "",
+  },
   // {
   //   id: "neo-portfolio",
   //   title: "Neo Portfolio",
@@ -204,34 +232,6 @@ export const projectsMocks: Project[] = [
     githubUrl: "",
     demoUrl: "https://innovahope.com",
     liveDisclaimer: "The current live version might include external updates beyond my initial systems maintenance.",
-  },
-  {
-    id: "apparel-ecosystem",
-    title: "Apparel: Fashion E-commerce Ecosystem",
-    description:
-      "Three-app Peruvian fashion e-commerce platform — a NestJS API, an SSR Angular storefront and a signals-based Angular admin — built around SUNAT-compliant tax handling and real-time stock reservation across a size x colour variant catalogue.",
-    image: "",
-    techStack: ["NestJS", "Angular 19", "TypeScript", "PostgreSQL", "Prisma", "Redis", "BullMQ"],
-    xp: 4600,
-    featured: true,
-    status: "in-progress",
-    difficulty: 5,
-    role: "Full-Stack",
-    architecture: "Clean Architecture",
-    loot: {
-      primary: ["NestJS", "Angular", "TypeScript", "PostgreSQL"],
-      secondary: ["Prisma", "Redis", "BullMQ", "SSR", "Signals", "Zod"],
-    },
-    devLog: {
-      challenge:
-        "Coordinating an API, an SSR storefront and an SPA admin around SUNAT-compliant tax rules and a finite apparel stock, where a size x colour variant can be oversold if reservation and fulfillment logic drift apart.",
-      solution:
-        "Kept tax, discount and order math in a pure `core/` layer with zero Nest or I/O dependencies — IGV is extracted, never added, and discounts are written as `LineItemAdjustment` rows instead of mutating unit prices so partial refunds stay reconcilable. Reserved and stocked quantities are tracked separately so cart holds release cleanly without touching real stock.",
-      architectureSnippet:
-        "Angular SSR Storefront (4200) + Angular SPA Admin (4300) -> NestJS API (3000, httpOnly cookies, no BFF) -> Core domain (pure TS: rules/totals/order) -> Prisma -> PostgreSQL + Redis/BullMQ",
-    },
-    githubUrl: "",
-    demoUrl: "",
   },
 ];
 
